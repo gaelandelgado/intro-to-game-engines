@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://co3qi46hucc5t"]
+
+[ext_resource type="PackedScene" uid="uid://bn2hm81n8celo" path="res://scenes/player.tscn" id="1_f0go4"]
+[ext_resource type="Texture2D" uid="uid://bnebbgs7rrt1e" path="res://icon.svg" id="2_wfba3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rms0j"]
+size = Vector2(128, 153.6)
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_f0go4")]
+position = Vector2(106, -27)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(107, -22)
+zoom = Vector2(4, 4)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(106, -12)
+scale = Vector2(0.953125, 0.0390625)
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor"]
+scale = Vector2(1, 1)
+texture = ExtResource("2_wfba3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_rms0j")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 45.0
+offset_top = -68.0
+offset_right = 167.0
+offset_bottom = -40.0
+text = "Gaelan Delgado"

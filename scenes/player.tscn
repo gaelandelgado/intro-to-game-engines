@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn2hm81n8celo"]
+
+[ext_resource type="Texture2D" uid="uid://c2iylvxtaawmc" path="res://assets/characters/DinoSprites - doux.png" id="1_rmve6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3xhw"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2ffy"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drg5o"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ivx"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g30qk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3xhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2ffy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drg5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ivx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bej5g"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g30qk")
+frame_progress = 0.126257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_bej5g")
