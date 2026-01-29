@@ -3,12 +3,28 @@ extends CharacterBody2D
 @export var speed: float = 100.0
 var current_speed: float = speed
 
-var JUMP_VELOCITY = -200
+var JUMP_VELOCITY: float = -200.0
+const MAX_JUMP_VELOCITY: float = -400.0  # Cap maximum jump height
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+var dead: bool = false
+
+func die():
+	if dead:
+		return
+	dead = true
+	
+	velocity = Vector2.ZERO
+	set_physics_process(false)
+
+	$AnimatedSprite2D.play("damage")
+
+			
 func apply_jump_boost(boost_amount: float):
-	JUMP_VELOCITY -= boost_amount  # negative because up is negative in Godot
+	# Clamp to max jump velocity to prevent infinite stacking
+	JUMP_VELOCITY = max(JUMP_VELOCITY - boost_amount, MAX_JUMP_VELOCITY)
+	print("Jump velocity now: ", JUMP_VELOCITY)
 
 func _physics_process(delta):
 	# Gravity

@@ -1,8 +1,20 @@
-[gd_scene load_steps=31 format=3 uid="uid://bn2hm81n8celo"]
+[gd_scene load_steps=34 format=3 uid="uid://bn2hm81n8celo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_bx18o"]
 [ext_resource type="Texture2D" uid="uid://c2iylvxtaawmc" path="res://assets/characters/DinoSprites - doux.png" id="1_rmve6"]
 [ext_resource type="AudioStream" uid="uid://dbg7x0kou4dp0" path="res://assets/sounds/sfx_jump.ogg" id="3_yea21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcfkd"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyb4i"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(360, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpljc"]
+atlas = ExtResource("1_rmve6")
+region = Rect2(384, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b0uni"]
 atlas = ExtResource("1_rmve6")
@@ -106,6 +118,20 @@ region = Rect2(216, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g30qk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcfkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyb4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpljc")
+}],
+"loop": true,
+"name": &"damage",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b0uni")
@@ -212,7 +238,7 @@ script = ExtResource("1_bx18o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g30qk")
-animation = &"idle"
+animation = &"damage"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

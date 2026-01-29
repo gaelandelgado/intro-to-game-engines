@@ -12,6 +12,7 @@ var popup_velocity := Vector2(0, -20)
 var elapsed_time := 0.0
 var popup_lifetime := 1.2
 var start_position := Vector2.ZERO
+var collected := false  # Prevent multiple pickups
 
 func _ready():
 	body_entered.connect(_on_body_entered)
@@ -19,9 +20,13 @@ func _ready():
 	popup_label.text = "+Speed"
 
 func _on_body_entered(body):
+	if collected:
+		return
+	
 	if not body.has_method("apply_speed_boost"):
 		return
-
+	
+	collected = true
 	print("Fruit collected by: ", body.name)  # Debug
 
 	# Apply speed boost
@@ -29,6 +34,9 @@ func _on_body_entered(body):
 
 	# Disable collision
 	collision.disabled = true
+	self.monitoring = false
+	self.set_deferred("collision_layer", 0)
+	self.set_deferred("collision_mask", 0)
 
 	# Hide fruit sprite
 	sprite.visible = false
